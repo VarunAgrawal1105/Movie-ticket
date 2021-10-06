@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+</head>
+<body>
+ 
+    <h3 style="text-align: center;"><strong> Login</strong></h3>
+  
+    
+    
+  <div class ="container">
+    <div class="row no-gutters">
+      <div class="col-xs-12">
+        <form #myForm = "ngForm"> 
+        
+           <div class="form-group">
+             
+                <label for="Email">Email:</label>
+                <input ngModel name = "Email" #Email = "ngModel" type="text" class="form-control"  required  pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$">
+                <div class = "alert alert-danger" *ngIf = "Email.touched && !Email.valid">
+                  <div *ngIf = "Email.errors?.required">  Email is required</div>
+                  <div *ngIf ="Email.errors?.pattern">Email is not in correct format</div> 
+                </div>
+              </div>
+             
+              
+                
+              <div class="form-group">
+             
+                <label for="Password">Password:</label>
+                <input type="password" ngModel name = "Password" #Password = "ngModel"  class="form-control"  required   >
+                <div class = "alert alert-danger" *ngIf = "Password.touched && !Password.valid">
+                  <div *ngIf = "Password.errors?.required">  Password is required</div>
+                </div>
+              </div>
+             
+            
+              <button class = "btn btn-danger mt-2" routerLink = "/" > Cancel </button>&nbsp;
+              <button class="btn btn-success mt-2" [disabled] = "!myForm.valid" (click) = "onFormSubmit(myForm.value)">Login</button>
+              <div class="text-center w-100">
+                <p class="text-muted font-weight-bold">Not Registered User ? <a href="/register"
+                        class="text-primary ml-2">Register</a></p>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+  <div class="container" style="margin:3em;">
+    <div class="row">
+      <div class="col-sm-5">
+        <img src="https://localhost:44371/Photos/{{movie.ImageUrl}}" width="200" height="300">
+      </div>
+
+      <div class="col-sm-7">
+       <p style="font-family: Arial, Helvetica, sans-serif;font-size: large;font-weight: bolder;">{{movie.MovieName}}</p>
+       <p style="font-style: italic;">{{movie.Description}}</p>
+       <form #movieForm="ngForm">
+         <select id="MovieId" ngModel name="MovieId" #MovieId="ngModel">
+           <option value="">Show Time</option> 
+           <option *ngFor = "let date of ScreenModel" value={{date.MovieId}}>
+           {{date.ShowTime}}
+           </option>
+         </select>
+          <br><br>
+          <label class="form-check-label">No Of Tickets:</label>&nbsp;
+          <select id="MovieId" ngModel name="MovieId" #MovieId="ngModel">
+            <option value="">Select</option> 
+            <option >1</option>
+            <option >2</option>
+            <option >3</option>
+            <option >4</option>
+            <option >5</option>
+            <option >6</option>
+            <option >7</option>
+            <option >8</option>
+            <option >9</option>
+            <option >10</option>
+          </select>
+       </form>
+      </div>
+    </div>
+  </div>

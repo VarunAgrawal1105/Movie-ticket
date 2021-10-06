@@ -1,0 +1,9 @@
+<div class="container">
+<ul>
+  <li><a class="active" [routerLink]="['/movie/userDashboard']">Home</a></li>
+  <li><a [routerLink] = "['/movie/myBookings']">My Bookings</a></li>
+  <li style="float: right;"><a href="#contact">Logout</a></li>
+  <li style="float: right;"> <a [routerLink]="['/movie/userDashboard']">Hello User</a></li>
+</ul>
+<router-outlet></router-outlet>
+</div>

@@ -1,0 +1,9 @@
+<div class="container">
+<ul>
+    <li><a class="active" [routerLink] = "['/admin/dashboard']">Home</a></li>
+    <li><a [routerLink] = "['/admin/addMovie']">Add Movie</a></li>
+    <li style="float: right;"><a href="" (click) = "onLogOut()">Logout</a></li>
+    <li style="float: right;"> <a [routerLink]="['/admin/dashboard']">Hello Admin</a></li>
+  </ul>
+</div>
+  <router-outlet></router-outlet>

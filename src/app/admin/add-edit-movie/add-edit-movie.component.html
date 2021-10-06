@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   
+    <style>
+      /* ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+      
+      li {
+        float: left;
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover {
+        background-color:wheat;
+      } */
+  </style>
+</head>
+<body>
+  <!-- <ul>
+    <li><a [routerLink]="['/admin/dashboard']">Home</a></li>
+    <li style="float: right;"><a (click)="onLogOut()">Logout</a></li>
+    <li style="float: right;"> <a>Hello Admin</a></li>
+  </ul> -->
+
+<form [formGroup]="myForm" class="d-flex justify-content-center">
+  <div class="row col-sm-10">
+<!-- <div class="d-flex flex-row bd-highlight" style="margin-top: 3em;"> -->
+  <!-- <div class="form-group row" style="width: 60%; margin-left: 3em;" > -->
+    <input type="hidden"formControlName = "MovieId" name ="MovieId" class="form-control">
+
+    <div class="col-sm-5">
+      <br>
+      <!-- <div class="bd-highlight"> -->
+        <img  [src]=photoFilePath height="150px" width="200px"><br>
+        <input type="file" formControlName="ImageUrl"  accept="image/x-png,image/gif,image/jpeg"  name= "ImageUrl" (change) = "uploadPhoto($event)" style="margin-top: 2em;"/>
+      <!-- </div> -->
+    </div>
+    <div class="col-sm-7">
+      <br>
+      <div class="row col-sm-12">
+        <label class="col-sm-3 col-form-label">Movie Name</label>
+
+        <div class="col-sm-9" [ngClass]= "{'has-error' : myForm.get('MovieName').errors && (myForm.get('MovieName').touched ||myForm.get('MovieName').dirty) }">
+          <!--<input type="text" [(ngModel)]="movie.MovieName" name= "MovieName" #MovieName = ngModel class="form-control"  placeholder="Enter Movie Name" required>-->
+          <input type="text" name= "MovieName" formControlName = "MovieName" placeholder="Enter Movie Name"><br>
+          <span style="color: red;" *ngIf="myForm.get('MovieName').errors && (myForm.get('MovieName').touched || myForm.get('MovieName').dirty)">
+            <span *ngIf="myForm.get('MovieName').errors.required">
+              Movie Name is Required
+            </span>
+            <!-- <span  *ngIf="myForm.get('MovieName').errors.minlength || myForm.get('MovieName').errors.maxlength" >
+              Movie Name must be between 3-50 characters
+            </span> -->
+        </span>
+        </div>
+      </div>
+
+    <div class="row col-sm-12">
+      <label class="col-sm-3 col-form-label" style="margin-top: 2em;">Movie Description</label>
+      <div class="col-sm-9" style="margin-top:2em ;" [ngClass]= "{'has-error' : myForm.get('Description').errors && (myForm.get('Description').touched ||myForm.get('Description').dirty) }">
+      
+        <textarea rows="5" cols="30" name="Description" formControlName = "Description" placeholder = "Enter Description"></textarea>
+        
+        <span style="color: red;" *ngIf="myForm.get('Description').errors && (myForm.get('Description').touched ||myForm.get('Description').dirty)">
+          <span *ngIf="myForm.get('Description').errors.required">
+            Description is Required
+          </span>
+          
+          <!-- <span *ngIf="myForm.get('Description').errors.minlength || myForm.get('Description').errors.maxlength" >
+            Description must be between 10-200 characters
+          </span> -->
+      </span>
+        
+
+      </div>
+    </div>
+  </div>
+
+  <!-- </div> -->
+<!-- </div> -->
+<div>
+<br>
+</div>
+<table border="1">
+  <thead class="d-flex justify-content-around">
+      <td>DateTime</td>
+      <td>Fare</td>
+  </thead>
+  <tbody style="border: 1px solid black; height: 140px;">
+    <div formArrayName = "MovieShows">
+      <div *ngFor = "let movieShow of MovieShows.controls;let i = index">
+        <div [formGroup] = "movieShow">
+          <div class="d-flex justify-content-around" >
+     
+           <!-- Date & Time: -->
+           <input type="datetime-local" formControlName="ShowTime">
+           <!-- Price: -->
+           <input type="number" formControlName="Price">
+      
+          </div>
+        </div>
+      </div>
+    </div>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between">
+<button class="btn btn-success col-sm-2" (click)="addShow()" style="margin-right: 5em; margin-top: 3em; margin-left: 3em;">Add Show</button>
+<button  class = "btn btn-success col-sm-2"[disabled]="myForm.invalid" (click)="recordSubmit(myForm.value)" style="margin-top: 3em;">Save</button>
+</div>
+</div>
+</form>
+</body>
+</html>
+     
+     

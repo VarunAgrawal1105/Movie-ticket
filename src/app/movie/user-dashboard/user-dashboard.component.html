@@ -1,0 +1,41 @@
+<div class="container" >
+  <div class="row row1">
+    <br><br>
+    <div class="col-sm-3 searchArea">
+      <form>
+          <label class="label">Movie Name: </label><br>
+          <div class="input-icons">
+            <i class="fas fa-search icon"></i>
+            <input type="search" class="input-field" placeholder="Search" class="search input">
+          </div><br>
+          <label class="label1">From Date:</label><br>
+          <input type="date" value="2021-12-07" class="date input"><br>
+          <label class="label">To Date:</label><br>
+          <input type="date" value="2021-12-07" class="date input"><br>
+          <input type="submit" value="Search" class="submit">
+      </form>
+    </div>
+
+    <div class="col-sm-9" >
+      <div class="card m-2" style="font-size: large;" class="row mt-2" *ngFor="let movie of movies | paginate: {itemsPerPage: 3, currentPage: p}">
+        <a  routerLink="" class="btn btn-primary bg-light">
+          <div  class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <img src="https://localhost:44371/Photos/{{movie.ImageUrl}}" width="100" height="100">
+                </div>
+                  <div class="col-sm-3">
+                      <h4 class="card-title text-start text-secondary">{{ movie.MovieName }}</h4>
+                      <h6 class="text-start text-secondary">{{ movie.Description }}</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <button class="btn btn-danger" [routerLink] = "['/movie/booking' , movie.MovieId]" style="margin: 1em;">Book</button>
+                  </div>
+              </div>
+          </div>
+        </a>
+      </div>
+      <pagination-controls (pageChange)="p = $event" class="float-right footer"></pagination-controls>
+    </div>
+  </div>
+</div>

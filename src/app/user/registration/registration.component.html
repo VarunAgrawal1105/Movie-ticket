@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+</head>
+<body>
+ 
+    <h3 style="text-align: center;"><strong> Registration</strong></h3>
+  
+    
+    
+  <div class ="container">
+    <div class="row no-gutters">
+      <div class="col-xs-12">
+        <form #myForm = "ngForm"> 
+        
+            <div class="form-group">
+             
+                <label for="FirstName">First Name:</label>
+                <input ngModel name = "FirstName" #FirstName = "ngModel" type="text" class="form-control"  required minlength="3" maxlength="20" pattern="[A-za-z0-9\s]*">
+                <div class = "alert alert-danger" *ngIf = "FirstName.touched && !FirstName.valid">
+                  <div *ngIf = "FirstName.errors?.required">  Name is required</div>
+                  <div *ngIf = "FirstName.errors?.minlength" >Name should be 3 to 20 characters</div>
+                  <div *ngIf = "FirstName.errors?.maxlength" >Name should be 3 to 20 characters</div>
+                  <div *ngIf ="FirstName.errors?.pattern">Name is not in correct format</div> 
+                </div>
+              </div>
+
+              <div class="form-group">
+             
+                <label for="LastName">Last Name:</label>
+                <input ngModel name = "LastName" #LastName = "ngModel" type="text" class="form-control"  required minlength="3" maxlength="20" pattern="[A-za-z0-9\s]*">
+                <div class = "alert alert-danger" *ngIf = "LastName.touched && !LastName.valid">
+                  <div *ngIf = "LastName.errors?.required">  Name is required</div>
+                  <div *ngIf = "LastName.errors?.minlength" > Name  should be 3 to 20 characters</div>
+                  <div *ngIf = "LastName.errors?.maxlength" >Name should be 3 to 20 characters</div>
+                  <div *ngIf ="LastName.errors?.pattern">Name is not in correct format</div> 
+                </div>
+              </div>
+
+              
+              <div class="form-group">
+             
+                <label for="Email">Email:</label>
+                <input ngModel name = "Email" #Email = "ngModel" type="text" class="form-control"  required  pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$">
+                <div class = "alert alert-danger" *ngIf = "Email.touched && !Email.valid">
+                  <div *ngIf = "Email.errors?.required">  Email is required</div>
+                  <div *ngIf ="Email.errors?.pattern">Email is not in correct format</div> 
+                </div>
+              </div>
+             
+              <div class="form-group">
+                <label class="control-label">Gender:</label>
+                <div class="form-control">
+                  <label class="radio-inline">
+                    <input  ngModel type="radio" required  #Gender="ngModel" value="male" name="Gender">
+                    Male
+                  </label>
+
+                  <label class="radio-inline">
+                    <input ngModel type="radio"  reqired #Gender="ngModel" value="female" name="Gender">
+                    Female
+                  </label>
+
+                  <label class="radio-inline">
+                    <input ngModel type="radio"  required #Gender="ngModel" value="other" name="Gender">
+                    Other
+                  </label>
+                </div>
+                  <div class="alert alert-danger" *ngIf ="Gender.touched && Gender.invalid">
+                   <div> Gender is required </div>
+                  </div>
+                  
+
+              </div>
+           
+              <div class="form-group">
+             
+                <label for="Contact">Contact:</label>
+                <input ngModel name = "Contact" #Contact = "ngModel" type="text" class="form-control"  required  pattern="[7-9][0-9]{9}">
+                <div class = "alert alert-danger" *ngIf = "Contact.touched && !Contact.valid">
+                  <div *ngIf = "Contact.errors?.required">  Contact is required</div>
+                  <div *ngIf ="Contact.errors?.pattern">Invalid Phone Number</div> 
+                </div>
+              </div>
+                
+              <div class="form-group">
+             
+                <label for="Password">Password:</label>
+                <input type="password" ngModel name = "Password" #Password = "ngModel"  class="form-control"  required  minlength="3" maxlength="20" >
+                <div class = "alert alert-danger" *ngIf = "Password.touched && !Password.valid">
+                  <div *ngIf = "Password.errors?.required">  Password is required</div>
+                  <div *ngIf ="Password.errors?.minlength">Password must be between 3 to 20 characters.</div> 
+                  <div *ngIf ="Password.errors?.maxlength">Password must be between 3 to 20 characters.</div> 
+                </div>
+              </div>
+              <div class="form-group">
+             
+                <label for="ConfirmPassword">Re-Enter Password:</label>
+                <input type="password" ngModel name = "ConfirmPassword" confirmequalvalidator="Password" #ConfirmPassword = "ngModel" class="form-control"  required  >
+                <div class = "alert alert-danger" *ngIf = "ConfirmPassword.touched && !ConfirmPassword.valid">
+                  <div *ngIf = "ConfirmPassword.errors?.required">  Password is required</div>
+                   <div *ngIf = "ConfirmPassword.errors?.notEqual"> Password and Confirm Password does not match.</div>
+                </div>
+              </div>
+            
+              <button class = "btn btn-danger mt-2" routerLink = "/" > Cancel </button>&nbsp;
+              <button class="btn btn-success mt-2" [disabled] = "!myForm.valid" (click) = "onFormSubmit(myForm.value)">Submit</button>
+              <div class="text-center w-100">
+                <p class="text-muted font-weight-bold">Registered User ? <a href="/"
+                        class="text-primary ml-2">Login</a></p>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
